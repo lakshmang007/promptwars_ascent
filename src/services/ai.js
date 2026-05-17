@@ -69,3 +69,31 @@ function getMockData() {
         }
     ];
 }
+
+export async function askLexGuardChatbot(message, documentText) {
+    if (API_KEY === "YOUR_GEMINI_API_KEY") {
+        return "I am operating in mock mode because the Gemini API key is missing. Normally, I would analyze your contract and answer: " + message;
+    }
+
+    try {
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
+        const prompt = `
+        You are LexGuard, an AI legal assistant. 
+        The user is asking a question about their uploaded contract.
+        
+        Contract Text Context:
+        ${documentText || "No contract uploaded yet."}
+        
+        User Question: ${message}
+        
+        Answer professionally, concisely, and helpfully. Do not give formal legal advice, but rather explain the implications based on the text.
+        `;
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        return response.text();
+    } catch (error) {
+        console.error("Chatbot failed:", error);
+        return "Sorry, I encountered an error while trying to process your request.";
+    }
+}
