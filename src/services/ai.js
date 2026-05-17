@@ -1,17 +1,14 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// Initialize Gemini (In production, never expose your API key to the client!)
-// For hackathon purposes, this uses the client-side
-const API_KEY = "YOUR_GEMINI_API_KEY"; 
-const genAI = new GoogleGenerativeAI(API_KEY);
-
 export async function analyzeDocumentWithAI(documentText) {
-    if (API_KEY === "YOUR_GEMINI_API_KEY") {
+    const API_KEY = localStorage.getItem("gemini_api_key");
+    if (!API_KEY || API_KEY === "YOUR_GEMINI_API_KEY") {
         console.warn("Using mock data because Gemini API Key is missing.");
         return getMockData();
     }
 
     try {
+        const genAI = new GoogleGenerativeAI(API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
         const prompt = `
         You are LexGuard, an AI legal assistant. Analyze the following contract.
@@ -71,11 +68,13 @@ function getMockData() {
 }
 
 export async function askLexGuardChatbot(message, documentText) {
-    if (API_KEY === "YOUR_GEMINI_API_KEY") {
+    const API_KEY = localStorage.getItem("gemini_api_key");
+    if (!API_KEY || API_KEY === "YOUR_GEMINI_API_KEY") {
         return "I am operating in mock mode because the Gemini API key is missing. Normally, I would analyze your contract and answer: " + message;
     }
 
     try {
+        const genAI = new GoogleGenerativeAI(API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
         const prompt = `
         You are LexGuard, an AI legal assistant. 
