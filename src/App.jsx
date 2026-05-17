@@ -238,10 +238,10 @@ function App() {
                   ) : (
                     <>
                       {insights.map((insight) => (
-                        <div key={insight.id} className={\`insight-card \${getRiskClass(insight.risk_score)}\`}>
+                        <div key={insight.id} className={`insight-card ${getRiskClass(insight.risk_score)}`}>
                           <div className="insight-header">
                             <span className="insight-title">{insight.title}</span>
-                            <span className={\`risk-badge \${getRiskClass(insight.risk_score)}\`}>
+                            <span className={`risk-badge ${getRiskClass(insight.risk_score)}`}>
                               Risk Score: {insight.risk_score}/10
                             </span>
                           </div>
