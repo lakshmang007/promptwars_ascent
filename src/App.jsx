@@ -4,7 +4,7 @@ import { storage } from './firebase';
 import { analyzeDocumentWithAI } from './services/ai';
 import './index.css';
 
-const DEMO_CONTRACT = \`EMPLOYMENT AND CONFIDENTIALITY AGREEMENT
+const DEMO_CONTRACT = `EMPLOYMENT AND CONFIDENTIALITY AGREEMENT
 
 This Employment and Confidentiality Agreement ("Agreement") is made effective as of the date of electronic acceptance, by and between LexGuard Corp ("Company") and the Employee.
 
@@ -21,7 +21,7 @@ During the term of employment and for a period of sixty (60) months following th
 Any and all inventions, discoveries, software, artwork, writings, or other intellectual property ("IP") created by the Employee during the term of this Agreement, whether created during working hours or on personal time, and whether utilizing Company resources or personal resources, shall become the exclusive, perpetual, and royalty-free property of the Company.
 
 5. ARBITRATION AND WAIVER OF JURY TRIAL
-Any dispute arising out of or relating to this Agreement or the employment relationship shall be resolved by mandatory, binding arbitration conducted confidentially in the State of Delaware. The Employee expressly waives any right to bring a class action lawsuit or a trial by jury against the Company.\`;
+Any dispute arising out of or relating to this Agreement or the employment relationship shall be resolved by mandatory, binding arbitration conducted confidentially in the State of Delaware. The Employee expressly waives any right to bring a class action lawsuit or a trial by jury against the Company.`;
 
 function App() {
   const [fileName, setFileName] = useState(null);
@@ -51,7 +51,7 @@ function App() {
     if (!uploadedFile) return;
 
     // 1. Upload to Firebase
-    const storageRef = ref(storage, \`contracts/\${uploadedFile.name}-\${Date.now()}\`);
+    const storageRef = ref(storage, `contracts/${uploadedFile.name}-${Date.now()}`);
     try {
       await uploadBytes(storageRef, uploadedFile);
     } catch (fbError) {
@@ -191,10 +191,10 @@ function App() {
               ) : (
                 <>
                   {insights.map((insight) => (
-                    <div key={insight.id} className={\`insight-card glass-panel \${getRiskClass(insight.risk_score)}\`}>
+                    <div key={insight.id} className={`insight-card glass-panel ${getRiskClass(insight.risk_score)}`}>
                       <div className="insight-header">
                         <span className="insight-title">{insight.title}</span>
-                        <span className={\`risk-badge \${getRiskClass(insight.risk_score)}\`}>
+                        <span className={`risk-badge ${getRiskClass(insight.risk_score)}`}>
                           Risk: {insight.risk_score}/10
                         </span>
                       </div>
