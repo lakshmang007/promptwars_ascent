@@ -165,7 +165,7 @@ function App() {
           <p style={{color: 'var(--text-secondary)', marginBottom: '2rem'}}>Use your Google Account to access the AI Contract Intelligence platform securely.</p>
           <button onClick={handleLogin} style={{
             background: 'white', color: '#3C4043', border: '1px solid #DADCE0', borderRadius: '4px', padding: '12px 24px', 
-            fontSize: '1rem', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '12px', margin: '0 auto', cursor: 'pointer', transition: 'background 0.2s'
+            fontSize: '1rem', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '12px', margin: '0 auto 1rem auto', cursor: 'pointer', transition: 'background 0.2s'
           }} onMouseOver={e => e.currentTarget.style.background = '#F8F9FA'} onMouseOut={e => e.currentTarget.style.background = 'white'}>
             <svg width="20" height="20" viewBox="0 0 48 48">
               <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
@@ -174,6 +174,22 @@ function App() {
               <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
             </svg>
             Sign in with Google
+          </button>
+          
+          <button 
+            onClick={() => {
+              setUser({
+                uid: 'demo-user-123',
+                displayName: 'Demo User',
+                photoURL: 'https://ui-avatars.com/api/?name=Demo+User&background=4285F4&color=fff'
+              });
+            }} 
+            style={{
+              background: 'transparent', color: 'var(--text-secondary)', border: 'none', 
+              fontSize: '0.85rem', textDecoration: 'underline', cursor: 'pointer'
+            }}
+          >
+            Bypass Login for Testing
           </button>
         </div>
       </div>
