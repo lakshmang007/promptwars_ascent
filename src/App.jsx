@@ -66,7 +66,6 @@ function App() {
       reader.readAsText(uploadedFile);
     });
     
-    // 3. Process
     processTextWithAI(extractedText, uploadedFile.name);
   };
 
@@ -82,30 +81,97 @@ function App() {
 
   return (
     <div className="app-container">
+      {/* Google-style Top App Bar */}
       <nav className="navbar">
-        <div className="logo">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--google-blue)" strokeWidth="2.5">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-          <span>L</span><span>E</span><span>X</span><span>G</span><span>U</span><span>A</span><span>R</span><span>D</span>
+        <div className="logo-section">
+          <div className="hamburger">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </div>
+          <div className="logo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--google-blue)" strokeWidth="2.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>LexGuard</span>
+          </div>
         </div>
-        <div className="nav-links">
-          <span style={{color: 'var(--text-primary)', fontWeight: '500'}}>Intelligence Dashboard</span>
-          <span>Integrations</span>
-          <span>Documentation</span>
+        <div className="navbar-right">
+          <div className="avatar">JD</div>
         </div>
       </nav>
 
-      <main className="dashboard">
-        {!fileName ? (
-          <div className="landing-view">
-            <div className="hero-section">
-              <h1 className="hero-title">AI Rights & Contract Intelligence</h1>
-              <p className="hero-description">
-                Upload legal and quasi-legal documents to instantly identify hidden liabilities, detect exploitative language, and generate severity-based risk scores using Google Gemini AI. Protect your rights before you sign.
+      <div className="main-wrapper">
+        {/* Google-style Side Drawer */}
+        <aside className="sidebar">
+          <div className="nav-item active">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            </svg>
+            Analyzer
+          </div>
+          <div className="nav-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            My Contracts
+          </div>
+          <div className="nav-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            Settings
+          </div>
+        </aside>
+
+        {/* Dashboard Content */}
+        <main className="dashboard">
+          
+          {!fileName && (
+            <div className="product-info">
+              <h1>Welcome to LexGuard</h1>
+              <p>
+                LexGuard is an <strong>AI Rights & Contract Intelligence System</strong> built to protect individuals and organizations from hidden liabilities. By leveraging Google Gemini AI, it analyzes legal and quasi-legal documents before you agree to them, extracting meaningful clauses, identifying unfavorable conditions, and providing transparent explanations in plain language.
               </p>
-              
-              <div className="action-buttons">
+
+              <div className="feature-grid">
+                <div className="feature-card blue">
+                  <h3>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    Clause Extraction
+                  </h3>
+                  <p>Automatically isolates critical legal obligations and conditions from dense text.</p>
+                </div>
+                <div className="feature-card red">
+                  <h3>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                      <line x1="12" y1="9" x2="12" y2="13"></line>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Risk Detection
+                  </h3>
+                  <p>Identifies one-sided terms, broad IP transfers, and hidden liabilities using severity scoring.</p>
+                </div>
+                <div className="feature-card green">
+                  <h3>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Plain Explanation
+                  </h3>
+                  <p>Translates complex legalese into understandable implications for informed decisions.</p>
+                </div>
+              </div>
+
+              <div className="action-area">
                 <input 
                   type="file" 
                   ref={fileInputRef} 
@@ -114,7 +180,7 @@ function App() {
                   accept=".txt"
                 />
                 <button className="btn-primary" onClick={() => fileInputRef.current.click()}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                     <polyline points="17 8 12 3 7 8"></polyline>
                     <line x1="12" y1="3" x2="12" y2="15"></line>
@@ -123,95 +189,78 @@ function App() {
                 </button>
                 
                 <button className="btn-secondary" onClick={loadDemoContract}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                    <polyline points="10 9 9 9 8 9"></polyline>
-                  </svg>
                   Load Demo Contract
                 </button>
               </div>
             </div>
-          </div>
-        ) : (
-          <div className="analysis-layout">
-            <div className="document-viewer glass-panel">
-              <div className="doc-header">
-                <h3 className="mono" style={{color: 'white', display: 'flex', alignItems: 'center', gap: '8px'}}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--google-blue)" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                  </svg>
-                  {fileName}
-                </h3>
-                {isScanning ? (
-                  <span className="mono" style={{color: 'var(--google-blue)', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem'}}>
-                    Scanning Document Structure...
-                  </span>
-                ) : (
-                  <span className="mono" style={{color: 'var(--google-green)', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem'}}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    Analysis Complete
-                  </span>
-                )}
+          )}
+
+          {fileName && (
+            <div>
+              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                <h2 style={{fontWeight: 400, fontSize: '1.25rem'}}>Contract Analysis</h2>
+                <button className="btn-secondary" onClick={() => setFileName(null)}>Analyze Another</button>
               </div>
-              <div className="doc-content">
-                {isScanning && <div className="scanner-overlay"></div>}
-                <div style={{ whiteSpace: 'pre-wrap', fontFamily: 'inherit', opacity: isScanning ? 0.5 : 1, transition: 'opacity 0.3s' }}>
-                  {docText}
+              <div className="analysis-layout">
+                
+                {/* Document Panel */}
+                <div className="document-viewer">
+                  <div className="doc-header">
+                    <span style={{fontWeight: 500, display: 'flex', alignItems: 'center', gap: '8px'}}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                      </svg>
+                      {fileName}
+                    </span>
+                    {isScanning && (
+                      <span style={{color: 'var(--google-blue)', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem'}}>
+                        <div className="spinner" style={{width: '16px', height: '16px', borderWidth: '2px'}}></div>
+                        Processing with Gemini...
+                      </span>
+                    )}
+                  </div>
+                  <div className="doc-content">
+                    {isScanning && <div className="scanner-overlay"></div>}
+                    <div className="doc-paper">
+                      {docText}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Insights Panel */}
+                <div className="insights-sidebar">
+                  {isScanning ? (
+                    <div style={{height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                      <div className="spinner" style={{width: '36px', height: '36px'}}></div>
+                      <p style={{marginTop: '1rem', color: 'var(--text-secondary)'}}>Extracting obligations...</p>
+                    </div>
+                  ) : (
+                    <>
+                      {insights.map((insight) => (
+                        <div key={insight.id} className={\`insight-card \${getRiskClass(insight.risk_score)}\`}>
+                          <div className="insight-header">
+                            <span className="insight-title">{insight.title}</span>
+                            <span className={\`risk-badge \${getRiskClass(insight.risk_score)}\`}>
+                              Risk Score: {insight.risk_score}/10
+                            </span>
+                          </div>
+                          <div className="insight-explanation">
+                            {insight.plain_language_explanation}
+                          </div>
+                          <div className="insight-snippet">
+                            "{insight.extracted_text}"
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  )}
                 </div>
               </div>
             </div>
-
-            <div className="insights-sidebar">
-              <div style={{padding: '0 0.5rem', marginBottom: '0.5rem'}}>
-                <h2 className="mono" style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--google-yellow)" strokeWidth="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                  </svg>
-                  AI Risk Report
-                </h2>
-                <p style={{color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.5rem'}}>
-                  Extracted clauses and hidden liabilities evaluated by Gemini.
-                </p>
-              </div>
-
-              {isScanning ? (
-                 <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '60%', color: 'var(--text-secondary)'}}>
-                   <div className="spinner"></div>
-                   <p className="mono" style={{marginTop: '1.5rem', color: 'var(--google-blue)'}}>Querying Gemini Model...</p>
-                 </div>
-              ) : (
-                <>
-                  {insights.map((insight) => (
-                    <div key={insight.id} className={`insight-card glass-panel ${getRiskClass(insight.risk_score)}`}>
-                      <div className="insight-header">
-                        <span className="insight-title">{insight.title}</span>
-                        <span className={`risk-badge ${getRiskClass(insight.risk_score)}`}>
-                          Risk: {insight.risk_score}/10
-                        </span>
-                      </div>
-                      <div className="insight-explanation">
-                        {insight.plain_language_explanation}
-                      </div>
-                      <div className="insight-snippet">
-                        "{insight.extracted_text}"
-                      </div>
-                    </div>
-                  ))}
-                </>
-              )}
-            </div>
-          </div>
-        )}
-      </main>
+          )}
+        </main>
+      </div>
     </div>
   );
 }
